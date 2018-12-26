@@ -43,7 +43,7 @@ export default class FetchOptions {
       options.integrity = this.integrity;
     }
 
-    if (this.body) {
+    if (this.body && isMethodWithBody(this.method)) {
       options.body = this.body;
     }
 

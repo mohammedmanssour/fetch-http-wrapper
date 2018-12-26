@@ -123,6 +123,7 @@ test('FetchOptions can rebuild options object with integrity', t => {
 
 test('FetchOptions can rebuild options object with body', t => {
   initOptions();
+  options.method = 'post';
   options.body = {
     key: 'value1'
   };
@@ -132,7 +133,7 @@ test('FetchOptions can rebuild options object with body', t => {
       headers: {
         'Content-Type': 'Application/json'
       },
-      method: 'get',
+      method: 'post',
       body: {
         key: 'value1'
       }
