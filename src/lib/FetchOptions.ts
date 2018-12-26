@@ -3,7 +3,7 @@ import { isMethodWithBody } from '../Utils';
 export default class FetchOptions {
   url: string;
   method: string;
-  headers: Headers;
+  headers: { [key: string]: string };
   mode?: string;
   body?: FormData | any;
   credentials?: string;
