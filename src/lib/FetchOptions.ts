@@ -6,7 +6,7 @@ export default class FetchOptions {
   method: string;
   headers: { [key: string]: string } = {};
   mode?: string;
-  body?: QueryObject = {};
+  body?: any = {};
   query?: QueryObject = {};
   credentials?: string;
   cache?: string;
