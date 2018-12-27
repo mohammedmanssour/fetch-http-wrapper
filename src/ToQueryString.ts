@@ -1,6 +1,4 @@
-export interface QueryObject {
-  [key: string]: string | string[];
-}
+import { QueryObject } from './types';
 
 export function toQueryString(object: QueryObject): string {
   let query: string[] = [];

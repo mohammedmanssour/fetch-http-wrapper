@@ -6,3 +6,7 @@ export type BeforeMiddleware = (
 ) => Partial<FetchOptions>;
 
 export type AfterMiddleware = (request: FetchRequest, response: any) => any;
+
+export interface QueryObject {
+  [key: string]: string | string[];
+}
