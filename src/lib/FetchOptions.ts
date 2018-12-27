@@ -1,12 +1,13 @@
-import { isMethodWithBody } from '../Utils';
+import { isMethodWithBody, empty } from '../Utils';
+import { QueryObject } from '../types';
 
 export default class FetchOptions {
   url: string;
   method: string;
-  headers: { [key: string]: string };
+  headers: { [key: string]: string } = {};
   mode?: string;
-  body?: any;
-  query?: any;
+  body?: QueryObject = {};
+  query?: QueryObject = {};
   credentials?: string;
   cache?: string;
   redirect?: string;
@@ -62,7 +63,7 @@ export default class FetchOptions {
       options.integrity = this.integrity;
     }
 
-    if (this.body && isMethodWithBody(this.method)) {
+    if (!empty(this.body) && isMethodWithBody(this.method)) {
       options.body = this.body;
     }
 
