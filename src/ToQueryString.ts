@@ -1,6 +1,6 @@
 import { QueryObject } from './types';
 
-export function toQueryString(object: QueryObject): string {
+export default function toQueryString(object: QueryObject): string {
   let query: string[] = [];
 
   for (var key in object) {
