@@ -1,10 +1,10 @@
 {
   "name": "fetch-client",
-  "version": "1.0.0",
-  "description": "A Simple, Intuitive, expressive http client built on top of fetch",
-  "main": "index.js",
+  "version": "0.1",
+  "description": "A Simple, Intuitive and expressive http client built on top of fetch",
+  "main": "dist/lib/index.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=devlopment tsc --p tsconfig.json --outDir dist --pretty --declaration",
+    "build:dev": "cross-env NODE_ENV=devlopment tsc --p tsconfig.json",
     "dev:watch": "cross-env NODE_ENV=devlopment tsc --outDir dist --pretty --watch"
   },
   "author": "Mohammed Manssour <manssour.mohammed@gmail.com>",
