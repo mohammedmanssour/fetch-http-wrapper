@@ -1,4 +1,10 @@
 import FetchOptions from './FetchOptions';
+import { skip, isNode } from '../Utils';
+import Fetch from '.';
+
+if (isNode()) {
+  var fetch = require('node-fetch');
+}
 
 export default class FetchRequest {
   options: FetchOptions = new FetchOptions();
@@ -127,5 +133,13 @@ export default class FetchRequest {
   integrity(integrity: string): FetchRequest {
     this.options.integrity = integrity;
     return this;
+  }
+
+  call() {
+    //apply before middleware
+    const options = Fetch.applyBeforeMiddleware(this.options);
+    return fetch(options.url, skip(options.getRequestOptions(), ['url'])).then(
+      (res: any) => Fetch.applyAfterMiddleware(this, res)
+    );
   }
 }
