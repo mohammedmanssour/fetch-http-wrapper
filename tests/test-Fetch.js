@@ -99,6 +99,8 @@ test('applyBeforeMiddlewares works correctly', t => {
 });
 
 test('applyAfterMiddlewares works correctly', t => {
+  Fetch.beforeMiddlewares = [];
+  Fetch.afterMiddlewares = [];
   const request = new FetchRequest();
   request.options.url = 'http://mohammedmanssour.me';
   request.options.method = 'get';

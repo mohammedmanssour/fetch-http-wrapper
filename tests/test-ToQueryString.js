@@ -1,5 +1,5 @@
 import test from 'ava';
-import { toQueryString } from '../dist/ToQueryString';
+import toQueryString from '../dist/ToQueryString';
 
 test('can convert object to query string', t => {
   const query = {
