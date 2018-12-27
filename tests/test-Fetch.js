@@ -1,6 +1,7 @@
 import test from 'ava';
 import Fetch from '../dist/lib';
 import FetchRequest from '../dist/lib/FetchRequest';
+import FetchOptions from '../dist/lib/FetchOptions';
 
 test('can create new request instance with method and url', t => {
   let request = Fetch.request('post', 'http://mohammedmanssour.me');
@@ -72,4 +73,68 @@ test('can add after middleware', t => {
 
   t.true(Fetch.afterMiddlewares.length > 0);
   t.is(middleware, Fetch.afterMiddlewares[0]);
+});
+
+test('applyBeforeMiddlewares works correctly', t => {
+  const options = new FetchOptions();
+  options.url = '/register';
+  options.method = 'get';
+
+  Fetch.before(options => {
+    const newOptions = options.clone();
+    newOptions.url = `http://mohammedmanssour.me/api${newOptions.url}`;
+    return newOptions;
+  });
+
+  Fetch.before(options => {
+    const newOptions = options.clone();
+    newOptions.method = 'post';
+    return newOptions;
+  });
+
+  const newOptions = Fetch.applyBeforeMiddleware(options);
+
+  t.deepEqual(newOptions.url, 'http://mohammedmanssour.me/api/register');
+  t.deepEqual(newOptions.method, 'post');
+});
+
+test('applyAfterMiddlewares works correctly', t => {
+  const request = new FetchRequest();
+  request.options.url = 'http://mohammedmanssour.me';
+  request.options.method = 'get';
+
+  const response = {
+    data: {
+      key: 'value1',
+      key: 'value2'
+    },
+    meta: {
+      code: 1,
+      message: 'success'
+    }
+  };
+
+  Fetch.after((req, res) => {
+    const response = Object.assign({}, res);
+    response.data = { session_id: 1 };
+    return response;
+  });
+
+  Fetch.after((req, res) => {
+    const response = Object.assign({}, res);
+    response.data = { session_id: 2 };
+    return response;
+  });
+
+  return Fetch.applyAfterMiddleware(request, response).then(res => {
+    t.deepEqual(res, {
+      data: {
+        session_id: 2
+      },
+      meta: {
+        code: 1,
+        message: 'success'
+      }
+    });
+  });
 });

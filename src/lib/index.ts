@@ -1,9 +1,6 @@
 import FetchRequest from './FetchRequest';
+import { BeforeMiddleware, AfterMiddleware } from '../types';
 import FetchOptions from './FetchOptions';
-
-type BeforeMiddleware = (options: FetchOptions) => FetchOptions;
-
-type AfterMiddleware = (request: FetchRequest, response: Response) => any;
 
 export default class Fetch {
   static beforeMiddlewares: BeforeMiddleware[] = [];
@@ -82,5 +79,34 @@ export default class Fetch {
   static after(middleware: AfterMiddleware) {
     this.afterMiddlewares.push(middleware);
     return this;
+  }
+
+  /**
+   * this apply after middleware via reduce
+   * @param options FetchOptions
+   * @returns FetchOptions
+   */
+  static applyBeforeMiddleware(options: FetchOptions): Partial<FetchOptions> {
+    const chain = (
+      options: Partial<FetchOptions>,
+      middleware: BeforeMiddleware
+    ) => middleware(options);
+
+    return this.beforeMiddlewares.reduce(chain, options);
+  }
+
+  /**
+   * apply after middlewares via reduce
+   * @param request
+   * @param response
+   * @return Promise
+   */
+  static applyAfterMiddleware(
+    request: FetchRequest,
+    response: any
+  ): Promise<any> {
+    const chain = (promise: Promise<any>, middleware: AfterMiddleware) =>
+      promise.then(res => middleware(request, res));
+    return this.afterMiddlewares.reduce(chain, Promise.resolve(response));
   }
 }
