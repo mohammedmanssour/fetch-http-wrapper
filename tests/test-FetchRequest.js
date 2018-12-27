@@ -26,6 +26,26 @@ test('request can set options params', t => {
     },
     request.withParams({
       key: 'value'
+    }).options.query
+  );
+
+  t.deepEqual(
+    {
+      key: 'value',
+      key2: 'value2'
+    },
+    request.param('key2', 'value2').options.query
+  );
+});
+
+test('request can set options body', t => {
+  let request = initFetchRequest();
+  t.deepEqual(
+    {
+      key: 'value'
+    },
+    request.withBody({
+      key: 'value'
     }).options.body
   );
 
@@ -34,7 +54,7 @@ test('request can set options params', t => {
       key: 'value',
       key2: 'value2'
     },
-    request.param('key2', 'value2').options.body
+    request.withBodyItem('key2', 'value2').options.body
   );
 });
 

@@ -6,6 +6,7 @@ export default class FetchOptions {
   headers: { [key: string]: string };
   mode?: string;
   body?: any;
+  query?: any;
   credentials?: string;
   cache?: string;
   redirect?: string;
@@ -20,6 +21,7 @@ export default class FetchOptions {
     newOptions.headers = this.headers;
     newOptions.mode = this.mode;
     newOptions.body = this.body;
+    newOptions.query = this.query;
     newOptions.credentials = this.credentials;
     newOptions.cache = this.cache;
     newOptions.redirect = this.redirect;

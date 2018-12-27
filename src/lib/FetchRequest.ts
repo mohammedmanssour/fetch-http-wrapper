@@ -1,6 +1,7 @@
 import FetchOptions from './FetchOptions';
 import { skip, isNode } from '../Utils';
 import Fetch from '.';
+import { QueryObject } from '../types';
 
 if (isNode()) {
   var fetch = require('node-fetch');
@@ -30,12 +31,31 @@ export default class FetchRequest {
   }
 
   /**
-   * set request params
+   * set request body
+   * @param body
+   */
+  withBody(body: any): FetchRequest {
+    this.options.body = body;
+    return this;
+  }
+
+  /**
+   * add a body item to body list
+   * @param key
+   * @param value
+   */
+  withBodyItem(key: string, value: QueryObject): FetchRequest {
+    this.options.body[key] = value;
+    return this;
+  }
+
+  /**
+   * set request query string
    * @param method
    * @returns FetchRequest
    */
   withParams(params: any): FetchRequest {
-    this.options.body = params;
+    this.options.query = params;
     return this;
   }
 
@@ -46,7 +66,7 @@ export default class FetchRequest {
    * @returns FetchRequest
    */
   param(key: string, value: any): FetchRequest {
-    this.options.body[key] = value;
+    this.options.query[key] = value;
     return this;
   }
 
