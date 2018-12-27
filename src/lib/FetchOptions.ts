@@ -5,12 +5,29 @@ export default class FetchOptions {
   method: string;
   headers: { [key: string]: string };
   mode?: string;
-  body?: FormData | any;
+  body?: any;
   credentials?: string;
   cache?: string;
   redirect?: string;
   referrer?: string;
   integrity?: string;
+
+  clone() {
+    const newOptions = new FetchOptions();
+
+    newOptions.url = this.url;
+    newOptions.method = this.method;
+    newOptions.headers = this.headers;
+    newOptions.mode = this.mode;
+    newOptions.body = this.body;
+    newOptions.credentials = this.credentials;
+    newOptions.cache = this.cache;
+    newOptions.redirect = this.redirect;
+    newOptions.referrer = this.referrer;
+    newOptions.integrity = this.integrity;
+
+    return newOptions;
+  }
 
   getRequestOptions(): Partial<FetchOptions> {
     let options: Partial<FetchOptions> = {
