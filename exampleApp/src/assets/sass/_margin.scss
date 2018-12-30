@@ -1,0 +1,33 @@
+$i: 5 ;
+
+@while $i <= 100{
+    .mx-#{$i}{
+        margin-left: #{$i}px;
+        margin-right: #{$i}px;
+    }
+
+    $i: $i + 5;
+}
+
+$i : 5;
+@while $i <= 100{
+    .my-#{$i}{
+        margin-top: #{$i}px;
+        margin-bottom: #{$i}px;
+    }
+
+    $i: $i + 5;
+}
+
+$directions : ('l': 'left', 'r': 'right', 't': 'top', 'b': 'bottom');
+
+@each $key, $dir in $directions {
+    $i : 5;
+    @while $i <= 100{
+        .m#{$key}-#{$i}{
+            margin-#{$dir}: #{$i}px;
+        }
+
+        $i: $i + 5;
+    }
+}

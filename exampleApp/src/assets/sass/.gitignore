@@ -1,0 +1,4 @@
+dist
+node_modules
+webpack.mix.js
+mix-manifest.json

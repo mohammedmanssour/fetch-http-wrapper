@@ -1,0 +1,15 @@
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    @include font-size(1);
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    @include css3-prefix('touch-action', manipulation);
+    cursor: pointer;
+    @include css3-prefix('user-select', none);
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}

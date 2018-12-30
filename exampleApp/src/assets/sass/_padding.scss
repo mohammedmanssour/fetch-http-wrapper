@@ -1,0 +1,33 @@
+$i: 5 ;
+
+@while $i <= 100{
+    .px-#{$i}{
+        padding-left: #{$i}px;
+        padding-right: #{$i}px;
+    }
+
+    $i: $i + 5;
+}
+
+$i : 5;
+@while $i <= 100{
+    .py-#{$i}{
+        padding-top: #{$i}px;
+        padding-bottom: #{$i}px;
+    }
+
+    $i: $i + 5;
+}
+
+$directions : ('l': 'left', 'r': 'right', 't': 'top', 'b': 'bottom');
+
+@each $key, $dir in $directions {
+    $i : 5;
+    @while $i <= 100{
+        .p#{$key}-#{$i}{
+            padding-#{$dir}: #{$i}px;
+        }
+
+        $i: $i + 5;
+    }
+}
