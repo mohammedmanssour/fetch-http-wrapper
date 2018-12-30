@@ -1,8 +1,11 @@
 import FetchRequest from './FetchRequest';
 import { BeforeMiddleware, AfterMiddleware } from '../types';
 import FetchOptions from './FetchOptions';
+import * as middlewares from '../middlewares';
 
 export default class Fetch {
+  static middlewares = middlewares;
+
   static beforeMiddlewares: BeforeMiddleware[] = [];
 
   static afterMiddlewares: AfterMiddleware[] = [];
