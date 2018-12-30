@@ -3,7 +3,7 @@ import { skip, isNode } from '../Utils';
 import Fetch from '.';
 import { QueryObject } from '../types';
 
-if (isNode()) {
+if (typeof fetch == 'undefined') {
   var fetch = require('node-fetch');
 }
 
