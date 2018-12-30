@@ -1,6 +1,6 @@
 {
-  "name": "fetch-client",
-  "version": "0.1",
+  "name": "fetch-http-wrapper",
+  "version": "0.1.1",
   "description": "A Simple, Intuitive and expressive http client built on top of fetch",
   "main": "dist/lib/index.js",
   "scripts": {
@@ -8,6 +8,10 @@
     "dev:watch": "cross-env NODE_ENV=devlopment tsc --outDir dist --pretty --watch",
     "test": "ava tests"
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "author": "Mohammed Manssour <manssour.mohammed@gmail.com>",
   "license": "ISC",
   "devDependencies": {
