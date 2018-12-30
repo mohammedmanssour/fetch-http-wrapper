@@ -12,6 +12,10 @@
     "dist",
     "src"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mohammedmanssour/fetch-http-wrapper.git"
+  },
   "author": "Mohammed Manssour <manssour.mohammed@gmail.com>",
   "license": "ISC",
   "devDependencies": {
