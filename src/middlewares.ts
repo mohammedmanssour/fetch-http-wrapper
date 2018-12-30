@@ -16,7 +16,10 @@ export function json(options: FetchOptions) {
   const newOptions = options.clone();
 
   newOptions.headers['Content-Type'] = 'application/json';
-  if (isMethodWithBody(newOptions.method)) {
+  if (
+    isMethodWithBody(newOptions.method) &&
+    typeof newOptions.body !== 'string'
+  ) {
     newOptions.body = JSON.stringify(newOptions.body);
   }
 
