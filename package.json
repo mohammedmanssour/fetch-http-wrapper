@@ -1,6 +1,6 @@
 {
   "name": "fetch-http-wrapper",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A Simple, Intuitive and expressive http client built on top of fetch",
   "main": "dist/lib/index.js",
   "scripts": {
