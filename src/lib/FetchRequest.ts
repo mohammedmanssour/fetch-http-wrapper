@@ -1,11 +1,8 @@
 import FetchOptions from './FetchOptions';
-import { skip, isNode } from '../Utils';
+import { skip } from '../Utils';
 import Fetch from '.';
 import { QueryObject } from '../types';
-
-if (typeof fetch == 'undefined') {
-  var fetch = require('node-fetch');
-}
+import fetch from '../fetch';
 
 export default class FetchRequest {
   options: FetchOptions = new FetchOptions();

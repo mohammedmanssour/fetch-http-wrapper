@@ -9,7 +9,6 @@
 		"module": "CommonJS",
   	},
   	"exclude": [
-		"node_modules",
 		"exampleApp"
 	]
 }
